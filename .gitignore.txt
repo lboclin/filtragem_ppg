@@ -1,0 +1,8 @@
+# Ignorar arquivos de dados e modelos pesados
+*.npy
+*.dat
+*.hea
+*.png
+*.pth
+data/
+outputs/
