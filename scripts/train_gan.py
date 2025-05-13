@@ -8,7 +8,7 @@ from gan_discriminator import PPGDiscriminator
 
 # Configurações
 PROCESSED_DIR = 'C:/Users/Usuário/Desktop/codes/projeto caes/filtragem_ppg/data/processed/'
-NOISY_DIR = 'C:/Users/Usuário/Desktop/codes/projeto caes/filtragem_ppg/data/noisy/'
+NOISY_DIR = 'C:/Users/Usuário/Desktop/codes/projeto caes/filtragem_ppg/data/noisy_realistic/'
 DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 EPOCHS = 200
 BATCH_SIZE = 4
@@ -21,7 +21,7 @@ def load_batch(file_list, batch_size, idx):
     for i in range(batch_size):
         if idx + i >= len(file_list):
             break
-        clean = np.load(os.path.join(PROCESSED_DIR, file_list[idx + i].replace('_noisy', '')))
+        clean = np.load(os.path.join(PROCESSED_DIR, file_list[idx + i].replace('_realistic', '')))
         noisy = np.load(os.path.join(NOISY_DIR, file_list[idx + i]))
         clean_batch.append(clean)
         noisy_batch.append(noisy)
@@ -103,5 +103,5 @@ if __name__ == "__main__":
 
     print("✅ Treinamento da GAN concluído!")
 
-    torch.save(generator.state_dict(), 'C:/Users/Usuário/Desktop/codes/projeto caes/filtragem_ppg/generator.pth')
+    torch.save(generator.state_dict(), 'C:/Users/Usuário/Desktop/codes/projeto caes/filtragem_ppg/generator_realistic.pth')
     print("✅ Gerador salvo como 'generator.pth'")
